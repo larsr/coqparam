@@ -26,11 +26,18 @@ open Termops
 open Reduction
 
 
+let body_of_constant cb = match cb.const_body with
+  | Undef _ -> None
+  | Def c -> Some c
+  | OpaqueDef lc -> Some (force_lazy_constr lc)
+
+
 (* Get the content of a constant *)
 
 let unfold_constant cst =  
   let cb = Global.lookup_constant cst in
-  let body = match cb.const_body with 
+  let cb_const_body = body_of_constant cb in
+  let body = match cb_const_body with
     | None -> failwith "Translation.unfold: cannot translate an assumption"
     | Some lazy_body -> force lazy_body 
   in 
@@ -41,7 +48,8 @@ let unfold_constant cst =
 
 let unfold_constant_with_type cst = 
   let cb = Global.lookup_constant cst in
-  let body = match cb.const_body with 
+  let cb_const_body = body_of_constant cb in
+  let body = match cb_const_body with
     | None -> failwith "Translation.unfold_with_types: cannot translate an assumption"
     | Some lazy_body -> force lazy_body 
   in 
@@ -309,9 +317,9 @@ let declare_abstraction a b name =
   let d = mkApp (translation default default default [] [] [] b, [|a;a|]) in
   let ce =
     { const_entry_body = c;
+      const_entry_secctx = None;
       const_entry_type = Some (Reduction.nf_betaiota d);
-      const_entry_opaque = false;
-      const_entry_boxed = false} in
+      const_entry_opaque = false} in
   declare_constant name (DefinitionEntry ce, IsDefinition Definition)
 
 
