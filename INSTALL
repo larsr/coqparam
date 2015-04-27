@@ -1,0 +1,66 @@
+
+            COMPILATION PROCEDURES FOR THE CoqParam SYSTEM
+            ----------------------------------------------
+
+
+WHAT DO YOU NEED ?
+==================
+
+   CoqParam is designed to work on computers equipped with a POSIX (Unix
+   or a clone) operating system. It is known to work under GNU/Linux
+   (i386 and amd64).
+
+   To compile CoqParam, you need:
+
+     - Coq version 8.3, available at http://coq.inria.fr/download
+
+     - Objective Caml version 3.10.0 or later
+       (available at http://caml.inria.fr/)
+
+     - Camlp5 (version <= 4.08, or 5.* transitional)
+
+     - GNU Make version 3.81 or later
+       (
+	available at http://www.gnu.org/software/make/, but also a
+        standard or optional add-on part to most Unices and Unix
+        clones, sometimes under the name "gmake".
+
+	If a new enough version is not included in your system, nor
+        easily available as an add-on, this should get you a working
+        make:
+
+	#Download it (wget is an example, use your favourite FTP or HTTP client)
+	wget http://ftp.gnu.org/pub/gnu/make/make-3.81.tar.bz2
+	bzip2 -cd make-3.81.tar.bz2 | tar x
+	#If you don't have bzip2, you can download the gzipped version instead.
+        cd make-3.81
+        ./configure --prefix=${HOME}
+	make install
+
+	Then, make sure that ${HOME}/bin is first in your $PATH.
+       )
+
+
+COMPILATION PROCEDURE.
+======================
+
+1- Check that you have the Objective Caml compiler version 3.10.0 (or
+   later) installed on your computer and that "ocamlopt.opt" and
+   "ocamlopt" lie in a directory which is present in your $PATH
+   environment variable.
+
+2- Check that you have Camlp5 installed on your computer and that the
+   command "camlp5" lies in a directory which is present in your $PATH
+   environment variable path.
+
+3- Download Coq version 8.3 and compile and install it by following the
+   instructions available in the repository. We recommand that you
+   install it on local.
+
+4- Set an environment variable COQBIN to the directory where Coq's
+   binaries have been installed; for instance:
+     export COQBIN=/home/jdoe/bin/
+   (the final slash is mandatory).
+
+5- Compile CoqParam by using the command:
+     make

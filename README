@@ -1,0 +1,37 @@
+
+               	         THE CoqParam SYSTEM
+            	         ===================
+
+INSTALLATION.
+=============
+
+   See the file INSTALL for installation procedure.
+
+
+DOCUMENTATION.
+==============
+
+   The documentation is available at
+   http://www.lix.polytechnique.fr/~keller/Recherche/coqparam.html. See
+   the file Example.v for examples of use.
+
+
+AVAILABILITY.
+=============
+
+   CoqParam is available at
+   http://www.lix.polytechnique.fr/~keller/Recherche/coqparam.html.
+
+
+SUGGESTIONS AND BUGS REPORT.
+============================
+
+   Send your suggestions and bugs reports at
+
+        Chantal.Keller@inria.fr
+
+LICENSE.
+========
+
+   SMTCoq is distributed under the terms of the GNU Lesser General
+   Public License. See the file LICENSE for more details.
